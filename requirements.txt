@@ -1,4 +1,5 @@
-langchain
 langchain-ollama
+langchain-core
+langchain-community
 langchain-chroma
-pandas
+langchain-text-splitters
