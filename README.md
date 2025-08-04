@@ -20,7 +20,7 @@ This project is a Retrieval-Augmented Generation (RAG) system for answering ques
   Script for processing the PDF, splitting it into chunks, and creating the vector database for retrieval
 
 - **prorail_network_statement_db/**  
-  Contains the vector database built from the Network Statement PDF. Used for efficient semantic search and retrieval.
+  Contains the vector database built from the Network Statement PDF. Used for efficient semantic search and retrieval. _Generated upon running railway_vector.py._
 
 - **NetworkStatement2026.pdf**  
   The official source document containing railway regulations and information.
