@@ -1,0 +1,185 @@
+{
+  "processId": "OnlineOrderFulfillment",
+  "startEvent": "evt_new_order",
+  "elements": [
+    {
+      "id": "evt_new_order",
+      "type": "startEvent",
+      "name": "New Order Received"
+    },
+    {
+      "id": "task_verify_payment",
+      "type": "task",
+      "name": "Verify Payment Method"
+    },
+    {
+      "id": "gw_payment_valid",
+      "type": "exclusiveGateway",
+      "name": "Payment Valid?"
+    },
+    {
+      "id": "task_check_min_total",
+      "type": "task",
+      "name": "Check Order Total"
+    },
+    {
+      "id": "gw_min_total",
+      "type": "exclusiveGateway",
+      "name": "Order Total >= $10?"
+    },
+    {
+      "id": "task_check_stock",
+      "type": "task",
+      "name": "Check Item Stock"
+    },
+    {
+      "id": "gw_stock_available",
+      "type": "exclusiveGateway",
+      "name": "All Items in Stock?"
+    },
+    {
+      "id": "task_check_fraud",
+      "type": "task",
+      "name": "Manual Fraud Check"
+    },
+    {
+      "id": "gw_fraud_check",
+      "type": "exclusiveGateway",
+      "name": "Fraud Check Passed?"
+    },
+    {
+      "id": "task_verify_shipping",
+      "type": "task",
+      "name": "Verify Shipping Address"
+    },
+    {
+      "id": "gw_shipping_valid",
+      "type": "exclusiveGateway",
+      "name": "Shipping Address Valid?"
+    },
+    {
+      "id": "task_check_premium",
+      "type": "task",
+      "name": "Check Premium Status"
+    },
+    {
+      "id": "gw_premium_status",
+      "type": "exclusiveGateway",
+      "name": "Premium Member?"
+    },
+    {
+      "id": "task_prep_standard",
+      "type": "task",
+      "name": "Prepare Standard Shipment"
+    },
+    {
+      "id": "task_prep_expedited",
+      "type": "task",
+      "name": "Prepare Expedited Shipment"
+    },
+    {
+      "id": "evt_order_processed",
+      "type": "endEvent",
+      "name": "Order Processed"
+    },
+    {
+      "id": "evt_order_rejected",
+      "type": "endEvent",
+      "name": "Order Rejected"
+    }
+  ],
+  "sequenceFlows": [
+    {
+      "id": "flow_start_to_verify",
+      "source": "evt_new_order",
+      "target": "task_verify_payment"
+    },
+    {
+      "id": "flow_verify_to_gw",
+      "source": "task_verify_payment",
+      "target": "gw_payment_valid"
+    },
+    {
+      "id": "flow_payment_ok",
+      "source": "gw_payment_valid",
+      "target": "task_check_min_total",
+      "condition": "Payment Valid"
+    },
+    {
+      "id": "flow_payment_nok",
+      "source": "gw_payment_valid",
+      "target": "evt_order_rejected",
+      "condition": "Payment Invalid"
+    },
+    {
+      "id": "flow_min_total_ok",
+      "source": "gw_min_total",
+      "target": "task_check_stock",
+      "condition": "Total >= $10"
+    },
+    {
+      "id": "flow_min_total_nok",
+      "source": "gw_min_total",
+      "target": "evt_order_rejected",
+      "condition": "Total < $10"
+    },
+    {
+      "id": "flow_stock_ok",
+      "source": "gw_stock_available",
+      "target": "task_check_fraud",
+      "condition": "Stock Available"
+    },
+    {
+      "id": "flow_stock_nok",
+      "source": "gw_stock_available",
+      "target": "evt_order_rejected",
+      "condition": "Stock Unavailable"
+    },
+    {
+      "id": "flow_fraud_ok",
+      "source": "gw_fraud_check",
+      "target": "task_verify_shipping",
+      "condition": "Fraud Check Passed"
+    },
+    {
+      "id": "flow_fraud_nok",
+      "source": "gw_fraud_check",
+      "target": "evt_order_rejected",
+      "condition": "Fraud Check Failed"
+    },
+    {
+      "id": "flow_shipping_ok",
+      "source": "gw_shipping_valid",
+      "target": "task_check_premium",
+      "condition": "Shipping Valid"
+    },
+    {
+      "id": "flow_shipping_nok",
+      "source": "gw_shipping_valid",
+      "target": "evt_order_rejected",
+      "condition": "Shipping Invalid"
+    },
+    {
+      "id": "flow_premium_yes",
+      "source": "gw_premium_status",
+      "target": "task_prep_expedited",
+      "condition": "Premium Member"
+    },
+    {
+      "id": "flow_premium_no",
+      "source": "gw_premium_status",
+      "target": "task_prep_standard",
+      "condition": "Standard Member"
+    },
+    {
+      "id": "flow_standard_to_end",
+      "source": "task_prep_standard",
+      "target": "evt_order_processed"
+    },
+    {
+      "id": "flow_expedited_to_end",
+      "source": "task_prep_expedited",
+      "target": "evt_order_processed"
+    }
+  ]
+}

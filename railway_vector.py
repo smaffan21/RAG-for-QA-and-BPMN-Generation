@@ -15,11 +15,12 @@ loader = PyPDFLoader(pdf_path)
 documents = loader.load()
 
 # 2. CHUNK THE DOCUMENT
-# split the loaded pages into smaller, more meaningful chunks, RecursiveCharacterTextSplitter is a good general-purpose choice
+# split the loaded pages into smaller, more meaningful chunks, RecursiveCharacterTextSplitter: https://python.langchain.com/api_reference/text_splitters/character/langchain_text_splitters.character.RecursiveCharacterTextSplitter.html
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000, # size of each chunk in characters
     chunk_overlap=100  # ohw many characters to overlap between chunks
 )
+
 chunks = text_splitter.split_documents(documents)
 
 print(f"Loaded {len(documents)} pages and split them into {len(chunks)} chunks.")
