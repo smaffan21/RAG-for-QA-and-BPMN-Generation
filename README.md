@@ -77,10 +77,10 @@ python railway_vector.py
 ```
 
 This will:
-- Load the NetworkStatement2026.pdf file
+- Load the NetworkStatement2026.pdf file or whatever your other data source you have
 - Split it into chunks for better retrieval
 - Create embeddings using the mxbai-embed-large model
-- Store everything in the `prorail_network_statement_db/` directory
+- It will store everything in the `prorail_network_statement_db/` directory (change if needed in railway_vector.py)
 
 ### 4. Run the Application
 
