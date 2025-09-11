@@ -5,3 +5,5 @@ langchain-chroma
 langchain-text-splitters
 pypdf
 uuid
+flask
+flask-cors

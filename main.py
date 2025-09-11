@@ -12,7 +12,7 @@ model = OllamaLLM(model="llama3.2")
 
 def run_qa_session():
     """Handles the Question & Answer session."""
-    # this is your existing q&a prompt and chain
+    # q&a prompt and chain
     qa_template = """
     You are an expert Q&A system for railway transport regulations in the Netherlands.
     Your task is to answer the user's question by following these steps:
