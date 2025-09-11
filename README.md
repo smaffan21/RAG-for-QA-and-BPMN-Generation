@@ -1,6 +1,6 @@
-# Railway RAG for Ab Ovo
+# Railway Network RAG for Q&A and BPMN Generation on 2026 Network Statement
 
-This project is a Retrieval-Augmented Generation (RAG) system for answering questions about Dutch railway transport regulations using the official Network Statement document. It also includes BPMN process modeling capabilities.
+This project is a Retrieval-Augmented Generation (RAG) system for answering questions about Dutch railway transport regulations using the official 2026 Network Statement document done by me, Syed Affan. It also includes BPMN process modeling capabilities for clients.
 
 ## Features
 
