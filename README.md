@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/956eca1c-d120-4e7e-baa3-4681d6b28970
 
-This project is a Retrieval-Augmented Generation (RAG) system for answering questions about Dutch railway transport regulations using the official 2026 Network Statement document done by me, Syed Affan. It also includes BPMN process modeling capabilities for clients.
+This project is a Retrieval-Augmented Generation (RAG) system for answering questions about Dutch railway transport regulations using the official 2026 Network Statement document. It also includes BPMN process modeling capabilities for clients.
 
 ## Features
 
